@@ -1,11 +1,11 @@
 import express from "express";
-import * as patientController from "../controllers/patientController"
+import * as patientController from "../controllers/patientController.js"
 
 
 const router = express.Router();
-const db = knex(knexConfig);
 
-router.route('/').get(patientController.getPatientList)
-router.route('/:id').get(patientController.getSinglePatient)
+
+router.route('/').get(patientController.getPatients)
+router.route('/:id').get(patientController.getPatientById)
 
 export default router;

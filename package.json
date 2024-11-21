@@ -1,14 +1,14 @@
 {
   "name": "medpass",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:migrate": "knex migrate:latest",
     "db:seed": "knex seed:run",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "migrate:rollback": "knex migrate:rollback"
   },
   "repository": {

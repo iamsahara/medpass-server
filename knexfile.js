@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -11,6 +9,7 @@ export default {
     database: process.env.DB_NAME || 'medpass',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || 'RootRoot',
+    port: process.env.DB_PORT || 3306
   },
   migrations: {
     directory: './src/migrations',
