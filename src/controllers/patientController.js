@@ -1,5 +1,10 @@
 import db from "../db/knex.js";
 
+// Core function: Fetch a patient by ID
+export const fetchPatientById = async (id) => {
+  return await db("patients").where({ id }).first();
+};
+
 export const getPatients = async (req, res) => {
   try {
     const patients = await db("patients").select("*");
@@ -10,10 +15,10 @@ export const getPatients = async (req, res) => {
   }
 };
 
-export const getPatientById = async (req, res) => {
+export const PatientById = async (req, res) => {
   try {
     const { id } = req.params;
-    const patient = await db("patients").where({ id }).first();
+    const patient = await fetchPatientById(id);
     if (!patient) {
       return res.status(404).json({ message: "Patient not found" });
     }
@@ -22,3 +27,5 @@ export const getPatientById = async (req, res) => {
     return res.status(400).send({ message: "Error fetching patient", error });
   }
 };
+
+export default { fetchPatientById };
