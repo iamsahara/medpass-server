@@ -4,6 +4,8 @@ import cors from 'cors';
 import patientRoutes from "./src/routes/patient-routes.js";
 import specialistRoutes from "./src/routes/specialist-routes.js";
 import userRoutes from "./src/routes/users-routes.js";
+import geocodingRoutes from "./src/routes/geocoding.js";
+
 
 const app = express();
 app.use(cors())
@@ -15,6 +17,7 @@ const PORT = process.env.PORT || 5051;
 app.use("/api/patients", patientRoutes);
 app.use("/api/specialists", specialistRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/geocoding", geocodingRoutes);
 
 
 // Start server

@@ -1,6 +1,7 @@
 import db from "../db/knex.js";
 
 export const getSpecialists = async (req, res) => {
+  // const queries = req.queries;
   try {
     const specialists = await db("specialists").select("*");
     return res.status(200).json(specialists);
@@ -21,3 +22,4 @@ export const getSpecialistById = async (req, res) => {
     return res.status(400).send({ message: "Error fetching Specialist", error });
   }
 };
+
