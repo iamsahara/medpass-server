@@ -1,7 +1,7 @@
 export const seed = async function (knex) {
     await knex("appointments").del();
   
-    const appointments = [];
+
     
     // Helper function to generate random dates within a range
     const randomDate = (start, end) => {
@@ -10,7 +10,7 @@ export const seed = async function (knex) {
     };
   
     // Possible outcomes for appointment descriptions
-    const appointmentResults = [
+    const appointments = [
       "Routine checkup completed successfully.",
       "Follow-up on test results; improvement noted.",
       "Patient referred to another specialist for further evaluation.",

@@ -1,9 +1,9 @@
 import express from "express";
-// import * as specialistConteroller from "../controllers/specialistController.js";
+import * as specialistController from "../controllers/specialistController.js";
 
 const router = express.Router();
 
-// router.route('/').get(specialistConteroller.getSpecialistList)
-// router.route('/:id').get(specialistConteroller.getSingleSpecialist)
+router.route('/').get(specialistController.getSpecialists)
+router.route('/:id').get(specialistController.getSpecialistById)
 
 export default router;
