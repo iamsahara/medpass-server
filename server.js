@@ -19,8 +19,9 @@ app.get('/', (req, res) => {
 
 app.use("/api/login", userRoutes);
 app.use("/api/specialists", specialistRoutes);
-app.use("/api/dashboard/patients", patientRoutes);
+app.use("/api/patients", patientRoutes);
 app.use("/api/geocoding", geocodingRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

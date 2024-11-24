@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/geocode", async (req, res) => {
     const { address } = req.query;
+    console.log("Geocoding address:", address);
   
     if (!address) {
       return res.status(400).json({ message: "Address query parameter is required." });
