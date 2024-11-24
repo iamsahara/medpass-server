@@ -7,17 +7,20 @@ import userRoutes from "./src/routes/users-routes.js";
 import geocodingRoutes from "./src/routes/geocoding.js";
 
 
+
 const app = express();
 app.use(cors())
 app.use(express.json());
-const PORT = process.env.PORT || 5051;
+const PORT = process.env.PORT || 5050;
 
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
 
-app.use("/api/patients", patientRoutes);
+app.use("/api/login", userRoutes);
 app.use("/api/specialists", specialistRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/dashboard/patients", patientRoutes);
 app.use("/api/geocoding", geocodingRoutes);
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

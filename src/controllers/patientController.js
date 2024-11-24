@@ -15,7 +15,7 @@ export const getPatients = async (req, res) => {
   }
 };
 
-export const PatientById = async (req, res) => {
+export const getPatientById = async (req, res) => {
   try {
     const { id } = req.params;
     const patient = await fetchPatientById(id);

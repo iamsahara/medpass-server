@@ -13,6 +13,7 @@ export const up = function (knex) {
     table.string("address").notNullable(); // Add address
     table.float("lat").notNullable();     // Add latitude
     table.float("lon").notNullable();     // Add longitude
+    table.json("history").nullable();    // Add history as a JSON column
     table.timestamps(true, true);
   });
 };
