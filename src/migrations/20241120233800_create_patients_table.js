@@ -10,10 +10,10 @@ export const up = function (knex) {
     table.string("phone").notNullable();
     table.string("insurance_number").notNullable();
     table.date("date_of_birth").notNullable();
-    table.string("address").notNullable(); // Add address
-    table.float("lat").notNullable();     // Add latitude
-    table.float("lon").notNullable();     // Add longitude
-    table.json("history").nullable();    // Add history as a JSON column
+    table.string("address").notNullable();
+    table.float("lat").notNullable();     
+    table.float("lon").notNullable();   
+    table.json("history").nullable();    
     table.timestamps(true, true);
   });
 };

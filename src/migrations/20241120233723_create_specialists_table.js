@@ -7,9 +7,9 @@ export const up = function (knex) {
     table.increments("id").primary();
     table.string("name").notNullable();
     table.string("specialty").notNullable();
-    table.string("address").notNullable(); // Add address
-    table.float("lat").notNullable();     // Add latitude
-    table.float("lon").notNullable();     // Add longitude
+    table.string("address").notNullable(); 
+    table.float("lat").notNullable(); 
+    table.float("lon").notNullable(); 
     table.string("phone").notNullable();
     table.timestamps(true, true);
   });

@@ -9,20 +9,18 @@ const users = [
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  // Find user by email
   const user = users.find((u) => u.email === email && u.password === password);
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
-  // Generate a token
   const token = jwt.sign(
-    { email: user.email }, // Payload
-    process.env.JWT_SECRET || "your_jwt_secret", // Secret key
-    { expiresIn: "100hr" } // Token expiration
+    { email: user.email }, 
+    process.env.JWT_SECRET || "your_jwt_secret", 
+    { expiresIn: "100hr" } 
   );
 
-  res.json({ token }); // Send the token to the frontend
+  res.json({ token }); 
 });
 
 export default router;

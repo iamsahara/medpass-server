@@ -7,5 +7,4 @@ router.route('/').get(specialistController.getSpecialists)
 router.route("/closest").get(specialistController.getClosestSpecialists);
 router.route('/:id').get(specialistController.getSpecialistById)
 
-
 export default router;

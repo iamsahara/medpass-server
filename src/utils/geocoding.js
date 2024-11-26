@@ -2,7 +2,6 @@ import axios from "axios";
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org";
 
-// Forward Geocoding: Address to Coordinates
 export const geocodeAddress = async (address) => {
   try {
     const response = await axios.get(`${NOMINATIM_BASE_URL}/search`, {
@@ -26,7 +25,6 @@ export const geocodeAddress = async (address) => {
   }
 };
 
-// Reverse Geocoding: Coordinates to Address
 export const reverseGeocode = async (lat, lon) => {
   try {
     const response = await axios.get(`${NOMINATIM_BASE_URL}/reverse`, {

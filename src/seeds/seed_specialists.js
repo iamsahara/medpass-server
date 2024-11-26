@@ -3,7 +3,7 @@ export const seed = async function (knex) {
 
   await knex("specialists").insert([
     {
-      id:1,
+      id: 1,
       name: "Dr. Green",
       specialty: "Cardiology",
       address: "123 Main St, Toronto",
@@ -14,7 +14,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-01", "2024-12-02", "2024-12-03"]),
     },
     {
-      id:2,
+      id: 2,
       name: "Dr. White",
       specialty: "Dermatology",
       address: "456 Elm St, Richmond Hill",
@@ -25,7 +25,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-05", "2024-12-06", "2024-12-07"]),
     },
     {
-      id:3,
+      id: 3,
       name: "Dr. Brown",
       specialty: "Neurology",
       address: "789 Oak St, Markham",
@@ -36,7 +36,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-10", "2024-12-11", "2024-12-12"]),
     },
     {
-      id:4,
+      id: 4,
       name: "Dr. Black",
       specialty: "Pediatrics",
       address: "101 Pine St, Vaughan",
@@ -47,7 +47,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-15", "2024-12-16", "2024-12-17"]),
     },
     {
-      id:5,
+      id: 5,
       name: "Dr. Blue",
       specialty: "Orthopedics",
       address: "654 Cedar St, Toronto",
@@ -58,7 +58,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-20", "2024-12-21", "2024-12-22"]),
     },
     {
-      id:6,
+      id: 6,
       name: "Dr. Yellow",
       specialty: "Oncology",
       address: "951 Maple St, Toronto",
@@ -69,7 +69,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-25", "2024-12-26", "2024-12-27"]),
     },
     {
-      id:7,
+      id: 7,
       name: "Dr. Violet",
       specialty: "Psychiatry",
       address: "159 Birch St, Richmond Hill",
@@ -80,7 +80,7 @@ export const seed = async function (knex) {
       availability: JSON.stringify(["2024-12-28", "2024-12-29", "2024-12-30"]),
     },
     {
-      id:8,
+      id: 8,
       name: "Dr. Orange",
       specialty: "Gastroenterology",
       address: "753 Spruce St, Vaughan",

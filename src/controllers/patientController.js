@@ -1,6 +1,5 @@
 import db from "../db/knex.js";
 
-// Core function: Fetch a patient by ID
 export const fetchPatientById = async (id) => {
   return await db("patients").where({ id }).first();
 };
@@ -51,12 +50,10 @@ export const createNewPatientHistory = async (req, res) => {
 
     await db("patients").where({ id }).update({ history });
 
-    res
-      .status(201)
-      .json({
-        message: "patient history updated successfuly",
-        updated_history: patient.history,
-      });
+    res.status(201).json({
+      message: "patient history updated successfuly",
+      updated_history: patient.history,
+    });
   } catch (error) {
     console.error("Failed to create patient history", error);
     res.status(500).json({ message: `Server error: ${error.message}` });

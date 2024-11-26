@@ -3,20 +3,17 @@
  * @returns { Promise<void> }
  */
 export const seed = async function (knex) {
-  // Clear the existing data in the appointments table
   await knex("appointments").del();
+  const numPatients = 7;
+  const numSpecialists = 8;
 
-  // Define the number of patients and specialists
-  const numPatients = 7; // Total number of patients
-  const numSpecialists = 8; // Total number of specialists
-
-  // Helper function to generate random dates within a range
   const randomDate = (start, end) => {
-    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    return date.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+    const date = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+    return date.toISOString().split("T")[0];
   };
 
-  // Appointment descriptions
   const appointmentResults = [
     "Routine checkup completed successfully.",
     "Follow-up on test results; improvement noted.",
@@ -30,22 +27,26 @@ export const seed = async function (knex) {
     "Condition managed; no further treatment required.",
   ];
 
-  // Generate appointments for each patient
   const appointments = [];
   for (let patientId = 1; patientId <= numPatients; patientId++) {
-    const numAppointments = Math.floor(Math.random() * 6); // 0 to 5 appointments per patient
+    const numAppointments = Math.floor(Math.random() * 6);
     for (let i = 0; i < numAppointments; i++) {
-      const specialistId = Math.floor(Math.random() * numSpecialists) + 1; // Random specialist ID (1 to numSpecialists)
-      const description = appointmentResults[Math.floor(Math.random() * appointmentResults.length)];
+      const specialistId = Math.floor(Math.random() * numSpecialists) + 1;
+      const description =
+        appointmentResults[
+          Math.floor(Math.random() * appointmentResults.length)
+        ];
       appointments.push({
         specialist_id: specialistId,
         patient_id: patientId,
-        appointment_date: randomDate(new Date(2024, 0, 1), new Date(2024, 11, 31)), // Random date in 2024
+        appointment_date: randomDate(
+          new Date(2024, 0, 1),
+          new Date(2024, 11, 31)
+        ),
         description: description,
       });
     }
   }
 
-  // Insert the generated appointments into the database
   await knex("appointments").insert(appointments);
 };
