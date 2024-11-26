@@ -1,62 +1,38 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import knex from "../db/knex.js"; // Make sure this points to your Knex configuration
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key"; // Store securely in env variables
-const users = []; // Mock database, replace with a real database integration
-
-// Register a new user
-export const registerUser = async (req, res) => {
-  const { email, password } = req.body;
-
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  // Store user in mock database
-  users.push({ email, password: hashedPassword });
-
-  res.status(201).json({ message: "User registered successfully!" });
-};
+const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key"; // Store securely in environment variables
 
 // Login user and issue JWT
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = users.find((u) => u.email === email);
-  if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" });
-  }
-
-  // Compare the password
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    return res.status(401).json({ message: "Invalid email or password" });
-  }
-
-  // Generate JWT
-  const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: "1h" });
-
-  res.json({ token });
-};
-
-// Middleware to verify JWT
-export const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
-  const token = authHeader.split(" ")[1];
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded; // Attach user info to request object
-    next();
-  } catch (err) {
-    return res.status(403).json({ message: "Forbidden: Invalid token" });
-  }
-};
+    // Check if the user exists in the database
+    const user = await knex("users").where({ email }).first();
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
 
-// Example protected resource
-export const getProtectedResource = (req, res) => {
-  res.json({ message: "Welcome to the protected route!", user: req.user });
+    // Compare the provided password with the hashed password in the database
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate a JWT
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ token, message: `Welcome back, ${user.name}!` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+  
 };
+export const getProtectedResource = (req, res) => {
+    res.json({ message: "Welcome to the protected route!", user: req.user });
+  };
