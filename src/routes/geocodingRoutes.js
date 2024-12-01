@@ -1,5 +1,5 @@
 import express from "express";
-import { geocodeAddress, reverseGeocode } from "../utils/geocoding.js";
+import { geocodeAddress, reverseGeocode } from "../utils/geocodingUtils.js";
 
 const router = express.Router();
 

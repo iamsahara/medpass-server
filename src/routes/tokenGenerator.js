@@ -3,7 +3,7 @@ import express from 'express';
 
 const router = express.Router();
 const users = [
-  { email: "admin@example.com", password: "password" }, { email:"sahar.abd@gmail.com" , password:"password"}
+  { email: "admin@example.com", password: "password" }, { email: "sahar.abd@gmail.com", password: "password" }
 ];
 
 router.post('/login', (req, res) => {
@@ -15,12 +15,12 @@ router.post('/login', (req, res) => {
   }
 
   const token = jwt.sign(
-    { email: user.email }, 
-    process.env.JWT_SECRET || "your_jwt_secret", 
-    { expiresIn: "100hr" } 
+    { email: user.email },
+    process.env.JWT_SECRET || "your_jwt_secret",
+    { expiresIn: "100hr" }
   );
 
-  res.json({ token }); 
+  res.json({ token });
 });
 
 export default router;

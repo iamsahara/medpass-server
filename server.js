@@ -1,10 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import patientRoutes from "./src/routes/patient-routes.js";
-import specialistRoutes from "./src/routes/specialist-routes.js";
-import userRoutes from "./src/routes/users-routes.js";
-import geocodingRoutes from "./src/routes/geocoding.js";
+import patientRoutes from "./src/routes/patientRoutes.js";
+import specialistRoutes from "./src/routes/specialistRoutes.js";
+import userRoutes from "./src/routes/usersRoutes.js";
+import geocodingRoutes from "./src/routes/geocodingRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
 
 const app = express();
