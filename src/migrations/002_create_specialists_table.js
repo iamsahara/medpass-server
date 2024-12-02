@@ -11,6 +11,8 @@ export const up = function (knex) {
     table.float("lat").notNullable(); 
     table.float("lon").notNullable(); 
     table.string("phone").notNullable();
+    table.date("firstAvailability").nullable();
+    table.json("availability").nullable();
     table.timestamps(true, true);
   });
 };

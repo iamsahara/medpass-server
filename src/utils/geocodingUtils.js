@@ -42,3 +42,4 @@ export const reverseGeocode = async (lat, lon) => {
     throw error;
   }
 };
+
