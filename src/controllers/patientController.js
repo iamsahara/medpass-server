@@ -27,7 +27,6 @@ export const getPatientById = async (req, res) => {
 };
 
 export const createNewPatientHistory = async (req, res) => {
-  console.log("Request body:", req.body);
   const { date, details } = req.body;
   const { id } = req.params;
   if (

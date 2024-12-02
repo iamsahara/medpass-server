@@ -16,9 +16,7 @@ export const getSpecialists = async (req, res) => {
 export const getSpecialistById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("Specialist ID being queried:", id);
     const specialist = await db("specialists").where({ id }).first();
-    console.log(specialist);
     if (!specialist) {
       return res.status(404).json({ message: "Specialist not found" });
     }
@@ -32,7 +30,6 @@ export const getSpecialistById = async (req, res) => {
 
 export const getClosestSpecialists = async (req, res) => {
   const { patientId } = req.query;
-console.log(req.query)
   if (!patientId) {
     return res.status(400).json({ message: "Patient ID is required." });
   }
