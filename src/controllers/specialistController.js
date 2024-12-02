@@ -1,5 +1,6 @@
 import db from "../db/knex.js";
 import calculateDistance from "../utils/distanceUtils.js";
+import {geocodeAddress} from "../utils/geocodingUtils.js";
 
 export const getSpecialists = async (req, res) => {
   try {
@@ -31,7 +32,7 @@ export const getSpecialistById = async (req, res) => {
 
 export const getClosestSpecialists = async (req, res) => {
   const { patientId } = req.query;
-
+console.log(req.query)
   if (!patientId) {
     return res.status(400).json({ message: "Patient ID is required." });
   }
@@ -42,11 +43,14 @@ export const getClosestSpecialists = async (req, res) => {
       return res.status(404).json({ message: "Patient not found." });
     }
 
-    const { lat: patientLat, lon: patientLon } = patient;
+  
+  const{lat: patientLat, lon:patientLon} = await geocodeAddress(patient.address)
+
 
     if (!patientLat || !patientLon) {
       return res.status(400).json({ message: "Patient location is invalid." });
     }
+
 
     const specialists = await db("specialists").select("*");
     const specialistsWithDistance = specialists.map((specialist) => ({
